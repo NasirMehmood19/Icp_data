@@ -1,33 +1,33 @@
-name: Run LCP Scripts Daily
+# name: Run LCP Scripts Daily
 
-on:
-  schedule:
-    - cron: '0 0 * * *'  # Runs daily at midnight UTC
-  workflow_dispatch:  # Allows manual execution
+# on:
+#   schedule:
+#     - cron: '0 0 * * *'  # Runs daily at midnight UTC
+#   workflow_dispatch:  # Allows manual execution
 
-jobs:
-  run-lcp-scripts:
-    runs-on: ubuntu-latest
+# jobs:
+#   run-lcp-scripts:
+#     runs-on: ubuntu-latest
 
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v4
+#     steps:
+#     - name: Checkout Repository
+#       uses: actions/checkout@v4
 
-    - name: Set Up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.9'
+#     - name: Set Up Python
+#       uses: actions/setup-python@v4
+#       with:
+#         python-version: '3.9'
 
-    - name: Install Dependencies
-      run: |
-        pip install requests gspread oauth2client
+#     - name: Install Dependencies
+#       run: |
+#         pip install requests gspread oauth2client
 
-    - name: Run Gossip Herald Script
-      env:
-        GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOSSIP_CREDENTIALS }}
-      run: python gossip.py
+#     - name: Run Gossip Herald Script
+#       env:
+#         GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOSSIP_CREDENTIALS }}
+#       run: python gossip.py
 
-    - name: Run GadInsider Script
-      env:
-        GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GADINSIDER_CREDENTIALS }}
-      run: python gadinsider.py
+#     - name: Run GadInsider Script
+#       env:
+#         GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GADINSIDER_CREDENTIALS }}
+#       run: python gadinsider.py
